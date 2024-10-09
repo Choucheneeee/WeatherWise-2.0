@@ -7,8 +7,8 @@ function TitleSnow({ data }) {
     console.log(data)
   return (
     <>
-    <div class="keyboard">
-  <span class="key">{data}</span>
+    <div className="keyboard">
+  <span className="key">{data}</span>
  
 </div>
 

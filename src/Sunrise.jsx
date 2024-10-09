@@ -6,9 +6,9 @@ function Sunrise() {
     console.log("sunrise")
   return (
     <>
-    <div class="container">
-    <div class="sune"></div>
-  <div class="sky"></div>
+    <div className="container">
+    <div className="sune"></div>
+  <div className="sky"></div>
   
 
   

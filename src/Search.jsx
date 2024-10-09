@@ -11,13 +11,16 @@ import Rainy from './Rainy'
 import Clear from './Clear'
 import Clouds from './Clouds'
 import Snow from './Snow'
-import BackroundDay from './BackroundDay'
-import BackroundNight from './BackroundNight'
+import BackgroundDay from './BackgroundDay'
+import BackgroundNight from './BackgroundNight'
 import './titlerainy.css'
 import './sunrise.css'
 import './titleclouds.css'
 import './titleSnow.css'
 import './titleclouds.css'
+import './night.scss';
+import './day.scss';
+
 
 
 
@@ -37,7 +40,7 @@ function Search() {
   const [city,setCity]=useState("kelibia")
   const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
   const [weatherClass, setWeatherClass] = useState('');
-
+  const [isDay, setIsDay] = useState(false);
 
   
   const handleSubmit = (event) => {
@@ -67,7 +70,7 @@ function Search() {
       console.log((jsonData.sys.sunset * 1000 + 1800000))
 
       console.log((new Date().getTime() + jsonData.timezone * 1000) > (jsonData.sys.sunrise * 1000))
-      console.log((new Date().getTime() + jsonData.timezone * 1000) < (jsonData.sys.sunset * 1000 + 1800000))
+      console.log((new Date().getTime() + jsonData.timezone * 1000) > (jsonData.sys.sunset * 1000 + 1800000))
 
 
       console.log("okeey");
@@ -80,6 +83,30 @@ function Search() {
       setIsLoading(false);
     }
   };
+  useEffect(() => {
+    if (data){
+    const currentTime = new Date().getTime() + data.timezone * 1000;
+    const sunriseTime = data.sys.sunrise * 1000;
+    const sunsetTime = data.sys.sunset * 1000;
+
+    if (currentTime > sunriseTime && currentTime < sunsetTime) {
+      setIsDay(true);
+      console.log(isDay,'day')
+    } else {
+      setIsDay(false);
+    }}
+
+  }, [data]);
+  useEffect(() => {
+    if (isDay) {
+      document.body.classList.add('day');
+      document.body.classList.remove('night');
+    } else {
+      document.body.classList.add('night');
+      document.body.classList.remove('day');
+    }
+  }, [isDay]);
+
   if (isLoading){
     return <div className="loader"></div>
   }
@@ -90,20 +117,17 @@ function Search() {
   
 
   const flagUrl = `https://flagsapi.com/${country}/flat/64.png`;
-
-  if(data){  
-  console.log(data)
-  console.log((new Date().getTime() + data.timezone * 1000) > (data.sys.sunrise * 1000))
-  console.log((new Date().getTime() + data.timezone * 1000) > (data.sys.sunset * 1000))
-  
-} return (<>
-
-{data && (
-  (new Date().getTime() + data.timezone * 1000) > (data.sys.sunrise * 1000) && 
-  (new Date().getTime() + data.timezone * 1000) > (data.sys.sunset * 1000) ? 
-  <div><BackroundDay /></div> :
-  <div><BackroundNight  /></div>
+  console.log(isDay ? 'day' : 'night','hahaha')
+return (<>
+   {data && (
+  <div className={isDay ? 'day' : 'night'}>
+    {isDay ? <BackgroundDay /> : <BackgroundNight />}
+  </div>
 )}
+
+
+
+
 <form className="flex items" onSubmit={handleSubmit}>
     <label htmlFor="simple-search" className="sr-only">Search</label>
     <div className="relative w-full" id="simple-search">

@@ -5,7 +5,7 @@ import './titlerainy.css'
 function TitleRainy({data}) {
   console.log(data,'rainyyyyyy')
   return (
-    <span class="key_rain">{data}</span>
+    <span className="key_rain">{data}</span>
   )
 }
 

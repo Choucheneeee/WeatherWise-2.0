@@ -5,14 +5,14 @@ import TitleRainy from './TitleRainy'
 function Rainy({data}) {
   return (
 <>
-<div class="cloude">
-  <div class="puffs"></div>
-  <div class="rain">
-    <div class="drop"></div>
-     <div class="drop"></div>
-     <div class="drop"></div>
-     <div class="drop"></div>
-     <div class="drop"></div>
+<div className="cloude">
+  <div className="puffs"></div>
+  <div className="rain">
+    <div className="drop"></div>
+     <div className="drop"></div>
+     <div className="drop"></div>
+     <div className="drop"></div>
+     <div className="drop"></div>
   </div>
   <TitleRainy data={data} />
 </div>

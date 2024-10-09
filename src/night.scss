@@ -11,10 +11,12 @@
     $random_range: $min + floor($rand * (($max - $min) + 1));
     @return $random_range;
   }
-  body{
-    background-color: #242424;;
-  }
   
+  body.night{
+    background-color: #00001f;
+    overflow: hidden;
+    
+  }
   .starsx {
     position: fixed;
     top: 0;

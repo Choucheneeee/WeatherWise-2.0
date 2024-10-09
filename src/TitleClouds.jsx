@@ -6,7 +6,7 @@ function TitleClouds({ data }) {
     console.log(data,'clouds')
   return (
     <>
-  <span class="key">{data}</span>
+  <span className="key">{data}</span>
  
 
     

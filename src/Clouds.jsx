@@ -6,9 +6,9 @@ import TitleClouds from './TitleClouds'
 function Clouds({data}) {
   return (
 <>
-<div class="contentxx">
-<div class="cloudxx"></div>
-<div class="cloud xxx"></div>
+<div className="contentxx">
+<div className="cloudxx"></div>
+<div className="cloud xxx"></div>
 <TitleClouds data={data} />
 </div>
 </>  )
