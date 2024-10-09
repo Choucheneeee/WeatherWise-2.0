@@ -1,0 +1,79 @@
+
+    
+    .contentxx {
+        padding:300px;
+        zoom:0.6;
+      }
+      .sunxx {
+        border-radius:50%;
+        height:200px;
+        position:absolute;
+        width:200px;
+        background:orange;
+        box-shadow: 0 0 10px orange,
+                      0 0 60px orange,
+                      0 0 200px yellow,
+                      inset 0 0 80px yellow;
+        top:-82em;
+        left:80em;
+        z-index:8;
+      }
+      
+      .cloudxx {
+        display:inline-block;
+        background:white;
+        width:120px;
+        height:120px; 
+        border-radius:50%;
+        position:relative;
+        top:-21em;
+        -webkit-filter: blur(6px);
+        z-index:15;
+        left:-18em;
+        animation: 15000ms cloudAnimation linear infinite;
+        opacity:1;
+      }
+      .cloudxx:before {
+        content:"";
+        display:inline-block;
+        background:white;
+        width:100px;
+        height:100px; 
+        -webkit-filter: blur(3px);
+        position:relative;
+        border-radius:50%;
+        top:-30px;
+        left:60px;
+      }
+      .cloudxx:after {
+        content:"";
+        display:inline-block;
+        background:white;
+        width:200px;
+        height:100px; 
+        -webkit-filter: blur(3px);
+        position:relative;
+        border-radius:50%;
+        top:-80px;
+        left:70px;
+      }
+      
+      .cloudxx:first-child {zoom:1.5;}
+      
+      @keyframes cloudAnimation {
+        0%{
+          transform: translate(250px,0);
+        }
+        50% {
+          transform: translate(400px,0);
+        }
+        100% {
+          transform: translate(250px,0);
+        }
+      }
+  
+      
+  
+  
+      
+      
