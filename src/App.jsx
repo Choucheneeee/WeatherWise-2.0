@@ -16,7 +16,6 @@ import { Carousel } from '@material-tailwind/react'
 
 
 
-/*4089e1  7a8ae8 */ 
 function App() {
   const [count, setCount] = useState(0);
 

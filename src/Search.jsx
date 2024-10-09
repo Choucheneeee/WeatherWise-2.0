@@ -13,10 +13,19 @@ import Clouds from './Clouds'
 import Snow from './Snow'
 import BackroundDay from './BackroundDay'
 import BackroundNight from './BackroundNight'
+import './titlerainy.css'
+import './sunrise.css'
+import './titleclouds.css'
+import './titleSnow.css'
+import './titleclouds.css'
 
 
 
-
+<style>
+  .night{
+    
+  }
+</style>
 
 
 
@@ -27,19 +36,21 @@ function Search() {
   const [error, setError] = useState(null);
   const [city,setCity]=useState("kelibia")
   const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
-  
+  const [weatherClass, setWeatherClass] = useState('');
+
 
   
   const handleSubmit = (event) => {
     
     event.preventDefault();
-    setError(null); // Reset error state
+    setError(null); 
 
     setIsLoading(true);
     fetchData();
   };
   const fetchData = async () => {
 
+    
     try {
       const response = await fetch(`${apiUrl}${city}&appid=${import.meta.env.VITE_API_Key_Weather}`);
       if (!response.ok) {
@@ -47,8 +58,9 @@ function Search() {
       }
       const jsonData = await response.json();
       setData(jsonData);
-      setCountry(jsonData.sys.country); // Extract and set the country code
+      setCountry(jsonData.sys.country); 
       setIsLoading(false);
+   
      
         console.log((new Date().getTime() + jsonData.timezone * 1000))
         console.log((jsonData.sys.sunrise * 1000))
@@ -79,17 +91,19 @@ function Search() {
 
   const flagUrl = `https://flagsapi.com/${country}/flat/64.png`;
 
-
-  return (<>
-
+  if(data){  
+  console.log(data)
+  console.log((new Date().getTime() + data.timezone * 1000) > (data.sys.sunrise * 1000))
+  console.log((new Date().getTime() + data.timezone * 1000) > (data.sys.sunset * 1000))
+  
+} return (<>
 
 {data && (
-    (new Date().getTime() + data.timezone * 1000) > (data.sys.sunrise * 1000) && 
-    (new Date().getTime() + data.timezone * 1000) < (data.sys.sunset * 1000 + 1800000) ? 
-    <BackroundNight /> :
-    <BackroundDay/> 
-    
-  )}
+  (new Date().getTime() + data.timezone * 1000) > (data.sys.sunrise * 1000) && 
+  (new Date().getTime() + data.timezone * 1000) > (data.sys.sunset * 1000) ? 
+  <div><BackroundDay /></div> :
+  <div><BackroundNight  /></div>
+)}
 <form className="flex items" onSubmit={handleSubmit}>
     <label htmlFor="simple-search" className="sr-only">Search</label>
     <div className="relative w-full" id="simple-search">
@@ -146,7 +160,7 @@ function Search() {
   {data && (
     <h2 className="text-lg font-bold text-white">
       Sunrise effect: 
-      {Math.abs(new Date(new Date().getTime() + data.timezone * 1000 - 3600000) - new Date((data.sys.sunrise + data.timezone) * 1000 - 3600000)) > 1800000 || 
+      {Math.abs(new Date(new Date().getTime() + data.timezone * 1000 - 3600000) - new Date((data.sys.sunrise + data.timezone) * 1000 - 3600000)) < 1800000 || 
        Math.abs(new Date(new Date().getTime() + data.timezone * 1000 - 3600000) - new Date((data.sys.sunset + data.timezone) * 1000 - 3600000)) < 1800000 ? 
        <Sunrise /> : 
        <p>
@@ -188,7 +202,10 @@ function Search() {
   )}
 </div>
 
+
 </div> 
+<span className={weatherClass}>{weatherClass}</span>
+
 
 </div>
     

@@ -189,3 +189,9 @@
    Sunrise effect: {Math.abs(data.timezone-data.sys.sunrise) > 3600000 ? <Sunrise /> : <p>Not sunrise</p>}
   </h2>
 )}</div>*/
+.day {
+background:red,
+}
+
+.night {
+background:green;}
