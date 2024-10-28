@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Horloge.css"; // Assurez-vous d'avoir un fichier Horloge.css pour le style
+import "./horloge.css"; // Assurez-vous d'avoir un fichier Horloge.css pour le style
 
 function Horloge({ data }) {
   const [time, setTime] = useState();

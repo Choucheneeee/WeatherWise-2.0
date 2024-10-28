@@ -210,14 +210,14 @@ return (<>
 <div>
   {data && (
     <h2 className="text-lg font-bold dark:text-white">
-      {data.weather[0].main.trim() != "Snow" ? <Snow data={"Snow"} />  : ""}
+      {data.weather[0].main.trim() === "Snow" ? <Snow data={"Snow"} />  : ""}
     </h2>
   )}
 </div>
 <div>
   {data && (
     <h2 className="text-lg font-bold dark:text-white">
-      {data.weather[0].main.trim() != "Clouds" ? <Clouds data={"Clouds"} /> : ""}
+      {data.weather[0].main.trim() === "Clouds" ? <Clouds data={"Clouds"} /> : ""}
     </h2>
   )}
 </div>
