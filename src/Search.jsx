@@ -16,7 +16,7 @@ import BackgroundNight from './BackgroundNight';
 import './titlerainy.css';
 import './sunrise.css';
 import './titleclouds.css';
-import './titleSnow.css';
+import './titlesnow.css';
 import './night.scss';
 import './day.scss';
 import sunriseGif from './assets/sunrise.png';
