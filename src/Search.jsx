@@ -20,6 +20,8 @@ import './titleSnow.css'
 import './titleclouds.css'
 import './night.scss';
 import './day.scss';
+import sunriseGif from './assets/sunrise.png';
+import sunsetGif from './assets/sunset.png';
 
 
 
@@ -41,6 +43,8 @@ function Search() {
   const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
   const [weatherClass, setWeatherClass] = useState('');
   const [isDay, setIsDay] = useState(false);
+  const [timeUntilSunrise, setTimeUntilSunrise] = useState('');
+  const [timeUntilSunset, setTimeUntilSunset] = useState('');
 
   
   const handleSubmit = (event) => {
@@ -65,38 +69,68 @@ function Search() {
       setIsLoading(false);
    
      
-        console.log((new Date().getTime() + jsonData.timezone * 1000))
-        console.log((jsonData.sys.sunrise * 1000))
-      console.log((jsonData.sys.sunset * 1000 + 1800000))
-
-      console.log((new Date().getTime() + jsonData.timezone * 1000) > (jsonData.sys.sunrise * 1000))
-      console.log((new Date().getTime() + jsonData.timezone * 1000) > (jsonData.sys.sunset * 1000 + 1800000))
 
 
-      console.log("okeey");
+      
     } catch (error) {
-      console.log("erreuuur");
       setError(error.message);
     } finally {
-      console.log("loading");
       
       setIsLoading(false);
     }
   };
   useEffect(() => {
-    if (data){
-    const currentTime = new Date().getTime() + data.timezone * 1000;
-    const sunriseTime = data.sys.sunrise * 1000;
-    const sunsetTime = data.sys.sunset * 1000;
-
-    if (currentTime > sunriseTime && currentTime < sunsetTime) {
-      setIsDay(true);
-      console.log(isDay,'day')
-    } else {
-      setIsDay(false);
-    }}
-
+    if (data) {
+      const currentTime = new Date().getTime() + data.timezone * 1000- 3600000;
+      const sunriseTime = (data.sys.sunrise + data.timezone) * 1000- 3600000;
+      const sunsetTime = (data.sys.sunset + data.timezone) * 1000- 3600000;
+  
+      const datecur = new Date(currentTime);
+      const hourscur = datecur.getUTCHours();
+      const minutescur = datecur.getUTCMinutes();
+  
+      const daterise = new Date(sunriseTime);
+      const hoursrise = daterise.getUTCHours();
+      const minutesrise = daterise.getUTCMinutes();
+  
+      const dateset = new Date(sunsetTime);
+      const hoursset = dateset.getUTCHours();
+      const minutesset = dateset.getUTCMinutes();
+  
+      const currentTimeInMinutes = hourscur * 60 + minutescur;
+      const sunriseTimeInMinutes = hoursrise * 60 + minutesrise;
+      const sunsetTimeInMinutes = hoursset * 60 + minutesset;
+  
+      let timeUntilSunrise = sunriseTimeInMinutes - currentTimeInMinutes;
+      if (timeUntilSunrise < 0) {
+        timeUntilSunrise += 24 * 60;
+      }
+  
+      let timeUntilSunset = sunsetTimeInMinutes - currentTimeInMinutes;
+      if (timeUntilSunset < 0) {
+        timeUntilSunset += 24 * 60;
+      }
+  
+      const hoursUntilSunrise = Math.floor(timeUntilSunrise / 60);
+      const minutesUntilSunrise = timeUntilSunrise % 60;
+      const hoursUntilSunset = Math.floor(timeUntilSunset / 60);
+      const minutesUntilSunset = timeUntilSunset % 60;
+  
+     
+      setTimeUntilSunrise(`${hoursUntilSunrise} h ${minutesUntilSunrise} m`);
+      setTimeUntilSunset(`${hoursUntilSunset} h ${minutesUntilSunset} m`);
+      if (currentTime > sunriseTime && currentTime < sunsetTime) {
+        setIsDay(true);
+      } else {
+        setIsDay(false);
+      }
+    }
   }, [data]);
+  
+  
+  useEffect(() => {
+  }, [isDay]);
+  
   useEffect(() => {
     if (isDay) {
       document.body.classList.add('day');
@@ -117,7 +151,7 @@ function Search() {
   
 
   const flagUrl = `https://flagsapi.com/${country}/flat/64.png`;
-  console.log(isDay ? 'day' : 'night','hahaha')
+
 return (<>
    {data && (
   <div className={isDay ? 'day' : 'night'}>
@@ -164,38 +198,7 @@ return (<>
 
       <div className='info' style={{ position: 'relative', top: '10em' }}>
 
-      <div className='az'>
-  {data && (
-    <h2 id='city' className="text-lg font-bold dark:text-white">
-      City time: {new Date(new Date().getTime() + data.timezone * 1000- 3600000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false  })}
-    </h2>
-  )}
-
-
-
-
-    <div>
-  {data && <h2 className="text-lg font-bold text-white">Sunrise: {new Date((data.sys.sunrise + data.timezone) * 1000- 3600000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}</h2>}
-</div>
-<div>
-  {data && <h2>Sunset: {new Date((data.sys.sunset + data.timezone) * 1000- 3600000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}</h2>}
-</div>
-<div>
-  {data && (
-    <h2 className="text-lg font-bold text-white">
-      Sunrise effect: 
-      {Math.abs(new Date(new Date().getTime() + data.timezone * 1000 - 3600000) - new Date((data.sys.sunrise + data.timezone) * 1000 - 3600000)) < 1800000 || 
-       Math.abs(new Date(new Date().getTime() + data.timezone * 1000 - 3600000) - new Date((data.sys.sunset + data.timezone) * 1000 - 3600000)) < 1800000 ? 
-       <Sunrise /> : 
-       <p>
-         Sunrise: {Math.abs(new Date(new Date().getTime() + data.timezone * 1000 - 3600000) - new Date((data.sys.sunrise + data.timezone) * 1000 - 3600000)) < 1800000 ? 'true' : 'false'} 
-           &  Sunset: {Math.abs(new Date(new Date().getTime() + data.timezone * 1000 - 3600000) - new Date((data.sys.sunset + data.timezone) * 1000 - 3600000)) < 1800000 ? 'true' : 'false'}
-       </p>
-      }
-    </h2>
-  )}
-</div>
-</div>
+      
 <div className='no'>
 <div>
   {data && (
@@ -207,14 +210,14 @@ return (<>
 <div>
   {data && (
     <h2 className="text-lg font-bold dark:text-white">
-      {data.weather[0].main.trim() === "Snow" ? <Snow data={"Snow"} />  : ""}
+      {data.weather[0].main.trim() != "Snow" ? <Snow data={"Snow"} />  : ""}
     </h2>
   )}
 </div>
 <div>
   {data && (
     <h2 className="text-lg font-bold dark:text-white">
-      {data.weather[0].main.trim() === "Clouds" ? <Clouds data={"Clouds"} /> : ""}
+      {data.weather[0].main.trim() != "Clouds" ? <Clouds data={"Clouds"} /> : ""}
     </h2>
   )}
 </div>
@@ -225,11 +228,18 @@ return (<>
     </h2>
   )}
 </div>
+{data && (<div className="text-lg font-bold dark:text-white"  id='nextsunrise'>The sun will rise in {timeUntilSunrise}</div>
+)}
+{data && (<div className="text-lg font-bold dark:text-white" id='nextsunset'>The sun will set in{timeUntilSunset}</div>
+)}
 
 
 </div> 
-<span className={weatherClass}>{weatherClass}</span>
+<div>
+  {data &&<img id='rise' src={sunriseGif} alt="Sunrise" />}
+  {data && <img id='set'  src={sunsetGif} alt="sunset" />}
 
+</div>
 
 </div>
     

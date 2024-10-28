@@ -1,8 +1,9 @@
 import React from 'react'
+import './titleclear.css'
 
 function TitleClear({data}) {
   return (
-    <div>{data}</div>
+    <div className='key_clear'>{data}</div>
   )
 }
 

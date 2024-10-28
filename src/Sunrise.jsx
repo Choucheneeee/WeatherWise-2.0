@@ -3,7 +3,6 @@ import './sunrise.css'
 
 
 function Sunrise() {
-    console.log("sunrise")
   return (
     <>
     <div className="container">

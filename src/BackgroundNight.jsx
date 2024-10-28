@@ -2,7 +2,6 @@ import React from 'react'
 
 
 function BackroundNight() {
-    console.log("night")
   return (
 <>
 

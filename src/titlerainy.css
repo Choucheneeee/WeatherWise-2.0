@@ -5,8 +5,10 @@
     letter-spacing: 1vw;
     transition: transform 0.2s;
     position:relative;
-    top:3.25em;
+    top:4.25em;
     left:-0.75em;
+    position: fixed;
+
   }
   
   

@@ -14,7 +14,7 @@
                       0 0 60px orange,
                       0 0 200px yellow,
                       inset 0 0 80px yellow;
-        top:-82em;
+        top:-80em;
         left:80em;
         z-index:8;
       }
@@ -26,7 +26,7 @@
         height:120px; 
         border-radius:50%;
         position:relative;
-        top:-21em;
+        top:-15em;
         -webkit-filter: blur(6px);
         z-index:15;
         left:-18em;

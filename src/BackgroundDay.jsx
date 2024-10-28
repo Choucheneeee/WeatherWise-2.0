@@ -1,7 +1,6 @@
 import React from 'react'
 
 function BackroundDay() {
-  console.log("day")
   return (
 <>
 <div className="starse">

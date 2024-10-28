@@ -11,14 +11,14 @@ function Carousels({ data }) {
   const fetchImage = async () => {
     try {
       const result = await axios.get(`${API_URL}?query=${data.name}&page=1&per_page=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_Key}`);
-      setImages(result.data.results); // Assuming the images are in result.data.results
+      setImages(result.data.results); 
     } catch (error) {
     }
   };
 
   useEffect(() => {
     fetchImage();
-  }, [data]); // Fetch images when the component mounts or when data.name changes
+  }, [data]); 
 
   return (
     <>

@@ -3,7 +3,6 @@ import './clear.css'
 import TitleClear from './TitleClear'
 
 function Clear({data}) {
-  console.log("hahaha")
   return (
 <>
 <div className="contentx">

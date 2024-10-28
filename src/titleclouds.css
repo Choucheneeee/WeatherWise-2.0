@@ -1,11 +1,11 @@
 
-.key {
+.key_clouds {
     font-size: 5vw;
     display: inline-block;
     letter-spacing: 1vw;
     transition: transform 0.2s;
     position:absolute;
-    top:2.0em;
+    top:2.5em;
     left:11em;
   }
   
@@ -101,35 +101,35 @@
   
   
   
-  .key:nth-child(1) {
+  .key_clouds:nth-child(1) {
     animation: pressDown1 2s infinite;
   }
   
-  .key:nth-child(2) {
+  .key_clouds:nth-child(2) {
     animation: pressDown2 3s infinite;
   }
   
-  .key:nth-child(3) {
+  .key_clouds:nth-child(3) {
     animation: pressDown3 4s infinite;
   }
   
-  .key:nth-child(4) {
+  .key_clouds:nth-child(4) {
     animation: pressDown4 2.5s infinite;
   }
   
-  .key:nth-child(5) {
+  .key_clouds:nth-child(5) {
     animation: pressDown5 2.5s infinite;
   }
   
-  .key:nth-child(6) {
+  .key_clouds:nth-child(6) {
     animation: pressDown6 3.5s infinite;
   }
   
-  .key:nth-child(7) {
+  .key_clouds:nth-child(7) {
     animation: pressDown7 2.2s infinite;
   }
   
-  .key:nth-child(8) {
+  .key_clouds:nth-child(8) {
     animation: pressDown8 3.2s infinite;
   }
   

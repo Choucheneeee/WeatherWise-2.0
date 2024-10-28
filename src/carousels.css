@@ -31,7 +31,7 @@
     margin-right:1.5em;
   }
   div.item {
-    position: absolute;
+    position: fixed;
     width: 20em;
     height: 400px;
     margin:5em;
@@ -43,6 +43,7 @@
       translateX(calc(-200px * var(--r)));
     z-index: calc((var(--position) - var(--abs)));
     border-radius:35px;
+
     
   }
   
@@ -51,7 +52,7 @@
     background-color:transparent;
     height:10em;
     border-radius:35px;
-
+    
     
   }
 

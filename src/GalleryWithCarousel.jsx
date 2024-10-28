@@ -11,7 +11,6 @@ export function GalleryWithCarousel({ data }) {
   const [images, setImages] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
 
-  console.log('key', import.meta.env.VITE_API_Key);
 
   const handleChange = () => {
     setChecked(!checked);
@@ -19,13 +18,10 @@ export function GalleryWithCarousel({ data }) {
 
   const fetchImage = async () => {
     try {
-      console.log("first");
       const result = await axios.get(`${API_URL}?query=${data.name}&page=1&per_page=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_Key}`);
-      console.log('result', result.data);
       setImages(result.data.results); 
       setTotalPages(result.totalPages)
     } catch (error) {
-      console.log("error", error);
     }
   };
 

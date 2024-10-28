@@ -84,7 +84,7 @@ html {
 // NAVIGATION DOTS
 .nav-dot {
   $dot-size: 15px;
-  position: absolute;
+  position: fixed;
   cursor: pointer;
   bottom: -0.5em;
   width: $dot-size;
