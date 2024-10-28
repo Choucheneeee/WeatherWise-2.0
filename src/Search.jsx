@@ -1,28 +1,26 @@
-import React from 'react'
-import './index.css'
-import './App.css'
-import { useState,useEffect } from 'react'
-import { GalleryWithCarousel } from './GalleryWithCarousel'
-import Horloge from './Horloge'
-import Carousels from './Carousels'
-import Sunrise from './Sunrise'
-import Loader from './Loader'
-import Rainy from './Rainy'
-import Clear from './Clear'
-import Clouds from './Clouds'
-import Snow from './Snow'
-import BackgroundDay from './BackgroundDay'
-import BackgroundNight from './BackgroundNight'
-import './titlerainy.css'
-import './sunrise.css'
-import './titleclouds.css'
-import './titleSnow.css'
-import './titleclouds.css'
+import React from 'react';
+import './index.css';
+import './App.css';
+import { useState, useEffect } from 'react';
+import { GalleryWithCarousel } from './GalleryWithCarousel';
+import Horloge from './Horloge';
+import Carousels from './Carousels';
+import Sunrise from './Sunrise';
+import Loader from './Loader';
+import Rainy from './Rainy';
+import Clear from './Clear';
+import Clouds from './Clouds';
+import Snow from './Snow';
+import BackgroundDay from './BackgroundDay';
+import BackgroundNight from './BackgroundNight';
+import './titlerainy.css';
+import './sunrise.css';
+import './titleclouds.css';
+import './titleSnow.css';
 import './night.scss';
 import './day.scss';
 import sunriseGif from './assets/sunrise.png';
 import sunsetGif from './assets/sunset.png';
-
 
 
 
