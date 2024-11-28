@@ -7,18 +7,73 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+out/
+.vite/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
+.vscode/
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+.DS_Store
+Thumbs.db
+
+# Test output
+coverage/
+*.lcov
+
+# Debug files
+*.stackdump
+*.pid
+
+# IDE specific files
+*.iml
+*.ipr
+*.iws
+
+# Miscellaneous
+*.local
+*.lock
+yarn-error.log
+package-lock.json
+.pnpm-debug.log
+
+# Static export files (if using Vite for static site generation)
+exported/
+
+# Temporary files
+temp/
+tmp/
+
+# MacOS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux specific
+.directory
+
+# Windows specific
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Parcel cache
+.cache/
+
+# HMR State
+*.hmr
